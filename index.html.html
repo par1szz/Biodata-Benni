@@ -39,8 +39,17 @@
     <nav class="max-w-6xl mx-auto flex justify-between items-center mb-16">
         <h1 class="text-2xl font-extrabold tracking-tighter text-white">BENNI<span class="text-emerald-500">.</span></h1>
         
-        <div class="relative">
-            <button id="menu-btn" class="md:hidden text-slate-400 hover:text-white text-2xl focus:outline-none z-50 relative">
+        <div class="hidden md:flex items-center space-x-6 text-xs font-bold uppercase tracking-wider text-slate-400">
+            <button onclick="openStory(1)" class="hover:text-emerald-400 transition">Cerita 1</button>
+            <button onclick="openStory(2)" class="hover:text-emerald-400 transition">Cerita 2</button>
+            <button onclick="openStory(3)" class="hover:text-emerald-400 transition">Cerita 3</button>
+            <button onclick="openStory(4)" class="hover:text-emerald-400 transition">Cerita 4</button>
+            <button onclick="openStory(5)" class="hover:text-emerald-400 transition">Cerita 5</button>
+            <a href="mailto:bennijosep7@gmail.com" class="bg-emerald-600 text-white text-center px-4 py-2 rounded-xl hover:bg-emerald-500 transition normal-case font-semibold tracking-normal">Contact</a>
+        </div>
+
+        <div class="relative md:hidden">
+            <button id="menu-btn" class="text-slate-400 hover:text-white text-2xl focus:outline-none z-50 relative">
                 <i class="fas fa-bars"></i>
             </button>
 
@@ -185,12 +194,12 @@
                 title: "Memori Kecil",
                 tag: "Hobi & Kreativitas",
                 img: "Memori Kecil.JPEG",
-                desc: "Teringat masa kecil dulu, diruang musik saya mencoba dan memainkan alat musik. Di situlah imajinasinya bermain, saya menjadi seorang anak kecil yang menyukai musik dan menyulap dentuman keras menjadi melodi terindah, genjrengan gitar menjadi harmonisasi yang indah, dan jauh sebelum saya mengerti tentang nada dan ritme yang sesungguhnya."
+                desc: "Teringat masa kecil dulu, diruang musik saya mencoba dan memainkan alat musik. Di situlah imajinasinya bermain, saya menjadi seorang anak kecil yang menyukai musik dan menyulap dentuman keras menjadi melodi terindah, genjrengan gitar menjadi harmonisasi yang indah, dan jauh sebelum saya mengerti tentang nada and ritme yang sesungguhnya."
             }, 
             4: {
                 title: "Kegiatan Weekend Saya",
                 tag: "Biliard",
-                img: "Biliard Beni.JPEG",
+                img: "Biliard Beni.jpeg",
                 desc: "Tidak ada cara yang lebih pas untuk menghabiskan weekend selain berkumpul di ruang biliar yang sejuk ini. Di bawah temaram lampu gantung, fokusnya beralih sepenuhnya pada bola putih di depannya—sejenak melupakan tumpukan rutinitas kerja yang melelahkan."
             }, 
             5: {
@@ -220,7 +229,6 @@
                 modal.classList.remove('opacity-0');
             }, 10);
 
-            // Sembunyikan menu mobile otomatis setelah cerita dipilih
             mobileMenu.classList.add('hidden');
             menuIcon.className = 'fas fa-bars';
         }
@@ -233,9 +241,9 @@
             }, 300);
         }
 
-        // Script Navbar Hamburger dengan e.stopPropagation() agar tidak langsung ditutup window click
+        // Event listener dengan pencegahan rambatan klik luar
         menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Mencegah event klik naik ke 'window'
+            e.stopPropagation(); 
             mobileMenu.classList.toggle('hidden');
             if(mobileMenu.classList.contains('hidden')) {
                 menuIcon.className = 'fas fa-bars';
@@ -244,11 +252,9 @@
             }
         });
 
-        // Menutup menu/modal jika user mengklik di luar area konten
         window.addEventListener('click', (e) => {
             const modal = document.getElementById('story-modal');
             
-            // Jika menu sedang terbuka dan yang diklik bukan bagian dari dalam box menu, tutup menunya
             if (!mobileMenu.contains(e.target)) {
                 mobileMenu.classList.add('hidden');
                 menuIcon.className = 'fas fa-bars';
